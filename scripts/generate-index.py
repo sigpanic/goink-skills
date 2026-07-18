@@ -41,6 +41,7 @@ def main():
                 "category": fm.get("category", ""),
                 "mode": fm.get("mode", ""),
                 "author": fm.get("author", ""),
+                "version": int(fm.get("version") or "1"),
                 "file": f,
             })
 

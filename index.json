@@ -1,4 +1,14 @@
 {
-  "updated": "",
-  "skills": []
+  "updated": "2026-07-18T15:11:35Z",
+  "skills": [
+    {
+      "name": "emotional-arc",
+      "description": "提供单场戏情感弧线设计方法论，确保情绪有起伏、转折有余韵。当用户要求设计情感节奏、或说\"情绪太平\"\"转折太硬\"\"没感觉\"\"这里要虐一下/燃一下\"时，使用此技能。",
+      "category": "技法",
+      "mode": "auto",
+      "author": "sigpanic",
+      "version": 1,
+      "file": "emotional-arc.md"
+    }
+  ]
 }
