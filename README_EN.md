@@ -44,4 +44,4 @@ The body can use any Markdown: headings, lists, tables, code blocks. The AI rece
 
 ## License
 
-Skills submitted to this repository share the same license as the Goink project.
+Skills submitted to this repository are licensed under [CC BY-SA 4.0](LICENSE) — Attribution + ShareAlike.
