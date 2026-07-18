@@ -1,6 +1,19 @@
-# Goink Community Skills
+<p align="center">
+  <img src="https://raw.githubusercontent.com/sigpanic/goink/master/assets/logo-dark.svg#gh-dark-mode-only" alt="Goink Skills" />
+  <img src="https://raw.githubusercontent.com/sigpanic/goink/master/assets/logo-light.svg#gh-light-mode-only" alt="Goink Skills" />
+</p>
 
-Community-contributed skills for the Goink AI novel-writing assistant. Each skill is a "knowledge card" that teaches the AI a specific writing methodology or workflow.
+<h1 align="center">Goink Community Skills<br><sub>Writing Methodologies × Community Contributions × One-Click Install</sub></h1>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/license-CC_BY--SA_4.0-green?style=for-the-badge" alt="CC BY-SA 4.0" />
+  <img src="https://github.com/sigpanic/goink-skills/actions/workflows/update-index.yml/badge.svg" alt="PR Check" />
+</p>
+
+<p align="center">
+  <strong>Community skills repository for <a href="https://github.com/sigpanic/goink">Goink</a>, the desktop AI novel-writing assistant.</strong><br>
+  Each skill is a "knowledge card" that teaches the AI a specific writing methodology or workflow.
+</p>
 
 ## Submitting a Skill
 
@@ -8,6 +21,8 @@ Community-contributed skills for the Goink AI novel-writing assistant. Each skil
 2. Create a `.md` file under `skills/` (see [.template/skill.md](.template/skill.md))
 3. Fill in the YAML frontmatter and body content
 4. Submit a Pull Request
+
+Once merged, the index is automatically updated and your skill becomes visible to all Goink users in the app.
 
 ## Skill Format
 

@@ -1,6 +1,19 @@
-# Goink 社区 Skills
+<p align="center">
+  <img src="https://raw.githubusercontent.com/sigpanic/goink/master/assets/logo-dark.svg#gh-dark-mode-only" alt="Goink Skills" />
+  <img src="https://raw.githubusercontent.com/sigpanic/goink/master/assets/logo-light.svg#gh-light-mode-only" alt="Goink Skills" />
+</p>
 
-这里存放社区贡献的技能文件。Skills 是 AI 写作助手的"专业知识卡片"，每条 skill 教 AI 一种特定的写作方法论或工作流。
+<h1 align="center">Goink 社区技能<br><sub>创作方法论 × 社区贡献 × App 内一键安装</sub></h1>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/license-CC_BY--SA_4.0-green?style=for-the-badge" alt="CC BY-SA 4.0" />
+  <img src="https://github.com/sigpanic/goink-skills/actions/workflows/update-index.yml/badge.svg" alt="PR Check" />
+</p>
+
+<p align="center">
+  <strong>这里是 <a href="https://github.com/sigpanic/goink">Goink</a> 桌面 AI 写作系统的社区技能仓库。</strong><br>
+  Skills 是 AI 写作助手的"专业知识卡片"，每条 skill 教 AI 一种特定的写作方法论或工作流。
+</p>
 
 ## 提交你的 Skill
 
@@ -8,6 +21,8 @@
 2. 在 `skills/` 目录下新建一个 `.md` 文件（参考 [.template/skill.md](.template/skill.md)）
 3. 填写 YAML frontmatter 和正文内容
 4. 提交 Pull Request
+
+PR 合并后，系统会自动更新索引，所有 Goink 用户即可在 App 内浏览和安装你的 Skill。
 
 ## Skill 格式
 
