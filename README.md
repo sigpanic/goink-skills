@@ -10,6 +10,8 @@
   <img src="https://github.com/sigpanic/goink-skills/actions/workflows/update-index.yml/badge.svg" alt="PR Check" />
 </p>
 
+<p align="center"><strong><a href="README_EN.md">English Version</a> | 本文档为中文版</strong></p>
+
 <p align="center">
   <strong>这里是 <a href="https://github.com/sigpanic/goink">Goink</a> 桌面 AI 写作系统的社区技能仓库。</strong><br>
   Skills 是 AI 写作助手的"专业知识卡片"，每条 skill 教 AI 一种特定的写作方法论或工作流。

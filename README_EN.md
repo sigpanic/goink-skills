@@ -10,6 +10,8 @@
   <img src="https://github.com/sigpanic/goink-skills/actions/workflows/update-index.yml/badge.svg" alt="PR Check" />
 </p>
 
+<p align="center"><strong><a href="README.md">中文版</a> | English Version</strong></p>
+
 <p align="center">
   <strong>Community skills repository for <a href="https://github.com/sigpanic/goink">Goink</a>, the desktop AI novel-writing assistant.</strong><br>
   Each skill is a "knowledge card" that teaches the AI a specific writing methodology or workflow.
