@@ -36,10 +36,10 @@ PR 合并后，系统会自动更新索引，所有 Goink 用户即可在 App �
 |------|------|------|
 | `name` | 是 | kebab-case 唯一标识，如 `dialogue-subtext`。**文件名必须与 `name` 一致**（即 `dialogue-subtext.md`） |
 | `description` | 是 | 一句话描述技能 + AI 何时应自动调用它 |
-| `category` | 是 | 中文分类，如 角色、情节、文笔、结构 等 |
-| `mode` | 是 | `auto`（AI 可自主调用）/ `manual`（仅用户 / 触发）/ `always`（常驻生效） |
-| `author` | 是 | 你的名字 |
-| `version` | 是 | 整数版本号，从 1 开始 |
+| `category` | 是 | 分类，如 角色、情节、文笔、结构 等 |
+| `mode` | 是 | 固定为 `auto`。下载后可在 App 内改为 `manual`（仅手动触发）或 `always`（常驻注入） |
+| `author` | 否 | 你的名字，可留空 |
+| `version` | 否 | 整数版本号，从 1 开始（缺失默认 1） |
 
 正文可以使用完整的 Markdown 语法：标题、列表、表格、代码块等。AI 会将正文作为系统提示注入到会话中。
 

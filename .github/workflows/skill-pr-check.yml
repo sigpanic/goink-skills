@@ -1,5 +1,12 @@
 name: Skill PR Check
 
+# SECURITY: This workflow uses pull_request_target which runs with the base
+# branch's token and write permissions. Do NOT checkout PR code or execute
+# PR-contributed scripts — that would be an RCE. The current implementation
+# only fetches PR file contents via the read-only GitHub API and passes them
+# as data to repository-owned scripts. See:
+# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
@@ -37,51 +44,43 @@ jobs:
 
           echo "Fork PR detected — checking file paths"
 
-          # --- fetch changed files ---
-          FILES=$(gh pr view "$PR_NUMBER" --repo "$REPO" --json files --jq '.files[].path' 2>/dev/null || true)
-          if [ -z "$FILES" ]; then
-            echo "No files found — skipping check"
-            exit 0
+          # --- fetch changed files (abort on API error to avoid silent approval) ---
+          FILES=$(gh pr view "$PR_NUMBER" --repo "$REPO" --json files --jq '.files[].path' 2>/dev/null)
+          if [ $? -ne 0 ] || [ -z "$FILES" ]; then
+            echo "Failed to fetch PR files from GitHub API — aborting to prevent silent approval"
+            exit 1
           fi
 
-          # --- path guard: reject anything outside skills/ ---
-          OUTSIDE=$(echo "$FILES" | grep -v '^skills/' || true)
-          if [ -n "$OUTSIDE" ]; then
-            echo "Files outside skills/ detected:"
-            echo "$OUTSIDE"
+          # --- path guard: only skills/*.md allowed (comment + label, do NOT close) ---
+          # 拒绝 skills/ 外的文件 + skills/ 下非 .md 的文件
+          DISALLOWED=$(echo "$FILES" | grep -v '^skills/.*\.md$' || true)
+          if [ -n "$DISALLOWED" ]; then
+            echo "Disallowed files detected (outside skills/ or non-.md under skills/):"
+            echo "$DISALLOWED"
 
-            FILE_LIST=$(echo "$OUTSIDE" | sed 's/^/- `/' | sed 's/$/`/')
+            FILE_LIST=$(echo "$DISALLOWED" | sed 's/^/- `/' | sed 's/$/`/')
 
-            if [ "$ACTION" = "opened" ] || [ "$ACTION" = "reopened" ]; then
-              gh pr comment "$PR_NUMBER" --repo "$REPO" --body "$(cat <<EOF
-          ## 感谢你的 PR！ 🙏
+            gh pr comment "$PR_NUMBER" --repo "$REPO" --body "$(cat <<EOF
+          ## 📁 文件位置提醒
 
-          Goink 目前由单人维护，review 精力有限，核心代码暂不开放 PR，仅接受 \`skills/\` 目录下的技能贡献。你的 PR 包含以下不在 \`skills/\` 内的文件：
+          贡献 skill 请放到 \`skills/\` 目录下，每个 skill 是一个 \`.md\` 文件。以下文件不符合这个规则：
 
           ${FILE_LIST}
 
-          欢迎关闭本 PR 后重新提交一个**仅包含 \`skills/\` 目录下文件**的 PR，会很乐意 review。参考 [贡献指南](https://github.com/${REPO}/blob/${DEFAULT_BRANCH}/README.md)。
+          调整后重新推送即可，参考 [贡献指南](https://github.com/${REPO}/blob/${DEFAULT_BRANCH}/CONTRIBUTING.md)。
 
           ---
 
-          Thanks for the PR! Goink is maintained by a solo developer — core code is not open for PRs right now. Only skill contributions under the \`skills/\` directory are accepted. Feel free to open a new PR with only \`skills/\` changes and we'll happily review it. See [contributing guide](https://github.com/${REPO}/blob/${DEFAULT_BRANCH}/README_EN.md).
-          EOF
-              )"
-            elif [ "$ACTION" = "synchronize" ]; then
-              gh pr comment "$PR_NUMBER" --repo "$REPO" --body "$(cat <<EOF
-          ## 新提交引入了 \`skills/\` 之外的改动
-
-          你的最新 commit 包含了以下不在 \`skills/\` 目录内的文件，PR 已被自动关闭：
+          Please place skill contributions under \`skills/\` as \`.md\` files. The following files don't fit:
 
           ${FILE_LIST}
 
-          如需继续，请撤销这些改动后重新提交，或新建一个仅包含 \`skills/\` 文件的 PR。
+          Adjust and push again. See [contributing guide](https://github.com/${REPO}/blob/${DEFAULT_BRANCH}/CONTRIBUTING.md).
           EOF
-              )"
-            fi
+            )"
 
-            gh pr close "$PR_NUMBER" --repo "$REPO"
-            echo "PR closed — changes outside skills/ not allowed"
+            gh pr edit "$PR_NUMBER" --repo "$REPO" --add-label 'needs-revision' 2>/dev/null || true
+            echo "PR has disallowed files — labeled needs-revision, not auto-closed"
             exit 1
           fi
 
@@ -91,8 +90,11 @@ jobs:
           VALIDATION_ERRORS=""
 
           fetch_content() {
-            gh api "repos/${REPO}/contents/${1}?ref=${HEAD_SHA}" --jq '.content' 2>/dev/null | base64 -d 2>/dev/null || true
+            gh api "repos/${REPO}/contents/${1}?ref=${HEAD_SHA}" --jq '.content' 2>/dev/null | base64 -d 2>/dev/null
           }
+
+          # 拉取 main 分支已有 skill name 列表，传给 validate-skill.py 做重复 name 检查
+          export EXISTING_NAMES=$(gh api "repos/${REPO}/contents/skills?ref=${DEFAULT_BRANCH}" --jq '[.[].name | rtrim_suffix(".md")] | join(",")' 2>/dev/null || true)
 
           while IFS= read -r file; do
             [ -z "$file" ] && continue
@@ -111,42 +113,41 @@ jobs:
           done <<< "$SKILL_FILES"
 
           if [ -n "$VALIDATION_ERRORS" ]; then
-            if [ "$ACTION" = "opened" ] || [ "$ACTION" = "reopened" ] || [ "$ACTION" = "synchronize" ]; then
-              gh pr comment "$PR_NUMBER" --repo "$REPO" --body "$(cat <<EOF
+            gh pr comment "$PR_NUMBER" --repo "$REPO" --body "$(cat <<EOF
           ## 格式校验未通过
 
-          请在本次 PR 中修改以下问题（不会关闭 PR）：
+          请在本次 PR 中修改以下问题（PR 不会被关闭）：
 
           ${VALIDATION_ERRORS}
-          参考 [Skill 格式说明](https://github.com/${REPO}/blob/${DEFAULT_BRANCH}/README.md) 和 [模板](https://github.com/${REPO}/blob/${DEFAULT_BRANCH}/.template/skill.md)。
+          参考 [贡献指南](https://github.com/${REPO}/blob/${DEFAULT_BRANCH}/CONTRIBUTING.md) 和 [模板](https://github.com/${REPO}/blob/${DEFAULT_BRANCH}/.template/skill.md)。
 
           ---
 
           Please fix the following issues in this PR (PR will not be closed):
 
           ${VALIDATION_ERRORS}
-          See [format guide](https://github.com/${REPO}/blob/${DEFAULT_BRANCH}/README_EN.md) and [template](https://github.com/${REPO}/blob/${DEFAULT_BRANCH}/.template/skill.md).
+          See [contributing guide](https://github.com/${REPO}/blob/${DEFAULT_BRANCH}/CONTRIBUTING.md) and [template](https://github.com/${REPO}/blob/${DEFAULT_BRANCH}/.template/skill.md).
           EOF
-              )"
-            fi
-            echo "Frontmatter validation failed — PR left open, check marked as failed"
+            )"
+
+            gh pr edit "$PR_NUMBER" --repo "$REPO" --add-label 'needs-revision' 2>/dev/null || true
+            echo "Frontmatter validation failed — PR labeled needs-revision, left open"
             exit 1
           fi
 
           echo "All skill files validated OK"
 
-          # --- success ---
-          if [ "$ACTION" = "opened" ]; then
-            gh pr edit "$PR_NUMBER" --repo "$REPO" --add-label 'skill-contribution' 2>/dev/null || true
+          # --- success: 移除 needs-revision + 加 skill-contribution + 发通过评论（所有 action 统一）---
+          gh pr edit "$PR_NUMBER" --repo "$REPO" --remove-label 'needs-revision' 2>/dev/null || true
+          gh pr edit "$PR_NUMBER" --repo "$REPO" --add-label 'skill-contribution' 2>/dev/null || true
 
-            gh pr comment "$PR_NUMBER" --repo "$REPO" --body "$(cat <<EOF
+          gh pr comment "$PR_NUMBER" --repo "$REPO" --body "$(cat <<EOF
           ## 感谢贡献！ 🎉
 
-          已收到你的 skill PR，所有改动均在 \`skills/\` 目录内，维护者将尽快 review。如果有任何建议，会在 PR 中直接讨论。
+          格式校验通过，维护者将尽快 review。有建议会在 PR 里直接讨论。
 
           ---
 
-          Thanks for the contribution! Your PR only touches files under \`skills/\` — looks great. Maintainers will review it soon. Feedback will be posted here if any.
+          Thanks for the contribution! Your PR passed format checks. Maintainers will review it soon. Feedback will be posted here if any.
           EOF
-            )"
-          fi
+          )"

@@ -36,10 +36,10 @@ Each skill is a Markdown file with YAML frontmatter:
 |-------|----------|-------------|
 | `name` | Yes | kebab-case identifier, e.g. `dialogue-subtext`. **Filename must match `name`** (e.g. `dialogue-subtext.md`) |
 | `description` | Yes | What the skill does and when the AI should invoke it |
-| `category` | Yes | Category in Chinese, e.g. 角色, 情节, 文笔, 结构 |
-| `mode` | Yes | `auto` (AI can invoke), `manual` (user `/` trigger only), `always` (always active) |
-| `author` | Yes | Your name |
-| `version` | Yes | Integer, starting from 1 |
+| `category` | Yes | Category, e.g. character, plot, dialogue, prose, structure |
+| `mode` | Yes | Fixed to `auto`. Can be changed to `manual` (user trigger only) or `always` (always active) in the App after download |
+| `author` | No | Your name, can be empty |
+| `version` | No | Integer, starting from 1 (defaults to 1) |
 
 The body can use any Markdown: headings, lists, tables, code blocks. The AI receives the body as a system prompt during the conversation.
 
@@ -47,12 +47,12 @@ The body can use any Markdown: headings, lists, tables, code blocks. The AI rece
 
 | Category | Scope |
 |----------|-------|
-| 角色 | Character design, personality, relationships |
-| 情节 | Plot structure, conflict, suspense |
-| 对白 | Dialogue, subtext, voice |
-| 文笔 | Prose style, description,修辞 |
-| 结构 | Chapter architecture, pacing |
-| 工具 | Writing tools, workflow methods |
+| character | Character design, personality, relationships |
+| plot | Plot structure, conflict, suspense |
+| dialogue | Dialogue, subtext, voice |
+| prose | Prose style, description, rhetoric |
+| structure | Chapter architecture, pacing |
+| tool | Writing tools, workflow methods |
 
 ## Notes
 

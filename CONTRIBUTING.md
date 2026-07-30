@@ -26,7 +26,9 @@ Maintainers reserve the right to reject or remove any skill without explanation.
 
 1. Fork this repository
 2. Create a new `.md` file under `skills/` (see [.template/skill.md](.template/skill.md))
-3. Fill in the YAML frontmatter (required fields: `name`, `description`, `category`, `mode`; recommended: `author`, `version`)
+3. Fill in the YAML frontmatter:
+   - Required: `name`, `description`, `category`, `mode` (must be `auto`; can switch to `manual`/`always` in App after download)
+   - Optional: `author`, `version`
 4. Open a pull request — CI will auto-check file paths and frontmatter format
 5. Maintainers will review and merge
 
