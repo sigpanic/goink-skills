@@ -19,6 +19,8 @@
 
 ## Submitting a Skill
 
+> Please read [CONTRIBUTING.md](CONTRIBUTING.md) first for contribution terms, content policy, and infringement reporting.
+
 1. **Fork** this repository
 2. Create a `.md` file under `skills/` (see [.template/skill.md](.template/skill.md))
 3. Fill in the YAML frontmatter and body content

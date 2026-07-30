@@ -19,6 +19,8 @@
 
 ## 提交你的 Skill
 
+> 提交前请先阅读 [CONTRIBUTING.md](CONTRIBUTING.md) 了解贡献条款、内容政策和侵权投诉流程。
+
 1. **Fork** 本仓库
 2. 在 `skills/` 目录下新建一个 `.md` 文件（参考 [.template/skill.md](.template/skill.md)）
 3. 填写 YAML frontmatter 和正文内容
