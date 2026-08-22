@@ -34,7 +34,7 @@ Each skill is a Markdown file with YAML frontmatter:
 
 | Field | Required | Description |
 |-------|----------|-------------|
-| `name` | Yes | kebab-case identifier, e.g. `dialogue-subtext`. **Filename must match `name`** (e.g. `dialogue-subtext.md`) |
+| `name` | Yes | Unique identifier, any naming style (Chinese / English / Pinyin all OK), e.g. `dialogue-subtext` or `末世先知回归模式`. **Filename must match `name`** (e.g. `xxx.md`) |
 | `description` | Yes | What the skill does and when the AI should invoke it |
 | `category` | Yes | Category, e.g. character, plot, dialogue, prose, structure |
 | `mode` | Yes | Fixed to `auto`. Can be changed to `manual` (user trigger only) or `always` (always active) in the App after download |

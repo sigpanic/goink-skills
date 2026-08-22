@@ -34,7 +34,7 @@ PR 合并后，系统会自动更新索引，所有 Goink 用户即可在 App �
 
 | 字段 | 必填 | 说明 |
 |------|------|------|
-| `name` | 是 | kebab-case 唯一标识，如 `dialogue-subtext`。**文件名必须与 `name` 一致**（即 `dialogue-subtext.md`） |
+| `name` | 是 | 唯一标识，命名方式不限（中文 / 英文 / 拼音均可），如 `dialogue-subtext` 或 `末世先知回归模式`。**文件名必须与 `name` 一致**（即 `xxx.md`） |
 | `description` | 是 | 一句话描述技能 + AI 何时应自动调用它 |
 | `category` | 是 | 分类，如 角色、情节、文笔、结构 等 |
 | `mode` | 是 | 固定为 `auto`。下载后可在 App 内改为 `manual`（仅手动触发）或 `always`（常驻注入） |
