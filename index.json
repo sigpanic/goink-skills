@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-18T16:52:20Z",
+  "updated": "2026-08-22T15:36:43Z",
   "skills": [
     {
       "name": "emotional-arc",
@@ -9,6 +9,15 @@
       "author": "sigpanic",
       "version": 1,
       "file": "emotional-arc.md"
+    },
+    {
+      "name": "末世先知回归模式",
+      "description": "主角从未来或异世界回归到灾难爆发前的关键时间点，凭借先知先觉进行预警、筹备，在危机中觉醒能力，最终直面末日降临的叙事模式。",
+      "category": "套路模板",
+      "mode": "auto",
+      "author": "sigpanic",
+      "version": 1,
+      "file": "末世先知回归模式.md"
     }
   ]
 }
