@@ -17,6 +17,35 @@
   Each skill is a "knowledge card" that teaches the AI a specific writing methodology or workflow.
 </p>
 
+## Using Skills in the App
+
+> [!TIP]
+> Goink App has a built-in skill market where all community skills can be browsed, searched, and installed with one click. Visit the [Goink](https://github.com/sigpanic/goink) repository to learn more.
+
+![Goink Skill Market](assets/skill-market.png)
+
+### Skill Invocation Modes
+
+The `mode` field of each skill determines how the AI uses it:
+
+| Mode | Description |
+|------|-------------|
+| `auto` | AI automatically invokes matching skills based on context during writing |
+| `manual` | Manually triggered in the conversation |
+| `always` | Always active as a system prompt |
+
+### Skill Layers
+
+Skills use a three-tier override mechanism — skills with the same name are resolved by priority:
+
+- **builtin**: App's built-in skills (lowest priority)
+- **user**: User-layer skills (shared across all novels)
+- **novel**: Novel-layer skills (current novel only, highest priority)
+
+> When downloading community skills, you can choose to install them to the **User layer** or **Novel layer**.
+
+![Goink Skill Install](assets/skill-install.png)
+
 ## Submitting a Skill
 
 > Please read [CONTRIBUTING.md](CONTRIBUTING.md) first for contribution terms, content policy, and infringement reporting.

@@ -17,6 +17,35 @@
   Skills 是 AI 写作助手的"专业知识卡片"，每条 skill 教 AI 一种特定的写作方法论或工作流。
 </p>
 
+## 在 App 中使用 Skills
+
+> [!TIP]
+> Goink App 内置技能市场，所有社区 Skills 都可以在 App 内浏览、搜索和一键安装。前往 [Goink](https://github.com/sigpanic/goink) 主仓库了解更多。
+
+![Goink Skill Market](assets/skill-market.png)
+
+### 技能调用模式
+
+每个技能的 `mode` 字段决定 AI 如何使用它：
+
+| 模式 | 说明 |
+|------|------|
+| `auto` | AI 在创作过程中根据上下文自动调用匹配的技能 |
+| `manual` | 在对话中手动触发 |
+| `always` | 常驻注入，作为系统提示持续生效 |
+
+### 技能层级
+
+Skills 采用三层覆盖机制，同名技能按优先级生效：
+
+- **builtin**：App 内置的基础技能（最低优先级）
+- **user**：用户层技能（所有小说通用）
+- **novel**：小说层技能（仅当前小说生效，最高优先级）
+
+> 下载社区技能时，可选择安装到 **用户层** 或 **小说层**。
+
+![Goink Skill Install](assets/skill-install.png)
+
 ## 提交你的 Skill
 
 > 提交前请先阅读 [CONTRIBUTING.md](CONTRIBUTING.md) 了解贡献条款、内容政策和侵权投诉流程。
