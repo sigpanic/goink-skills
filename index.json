@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-31T09:38:23Z",
+  "updated": "2026-08-31T14:46:51Z",
   "skills": [
     {
       "name": "emotional-arc",
@@ -9,6 +9,15 @@
       "author": "sigpanic",
       "version": 1,
       "file": "emotional-arc.md"
+    },
+    {
+      "name": "定锚重生流",
+      "description": "当要写重生者利用前世记忆复仇、守护并逐步登顶的长篇故事，需要一套以阶段性目标为锚点、靠信息差布局、底牌递进与舞台扬名驱动成长的稳定叙事节奏时使用。",
+      "category": "套路模板",
+      "mode": "auto",
+      "author": "sigpanic",
+      "version": 1,
+      "file": "定锚重生流.md"
     },
     {
       "name": "末世先知回归模式",
