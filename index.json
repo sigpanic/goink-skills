@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-22T15:36:43Z",
+  "updated": "2026-08-31T09:38:23Z",
   "skills": [
     {
       "name": "emotional-arc",
@@ -18,6 +18,15 @@
       "author": "sigpanic",
       "version": 1,
       "file": "末世先知回归模式.md"
+    },
+    {
+      "name": "重生医武复仇流",
+      "description": "主角含冤而死、携上古传承重生回过去，以独门技艺（医术/武学）撬动上层资源，步步复仇、建立势力、揭开身世，最终对抗更高维威胁的超长篇成长叙事模板。",
+      "category": "套路模板",
+      "mode": "auto",
+      "author": "sigpanic",
+      "version": 1,
+      "file": "重生医武复仇流.md"
     }
   ]
 }
