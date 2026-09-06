@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-31T14:46:51Z",
+  "updated": "2026-09-06T13:37:51Z",
   "skills": [
     {
       "name": "emotional-arc",
@@ -27,6 +27,15 @@
       "author": "sigpanic",
       "version": 1,
       "file": "末世先知回归模式.md"
+    },
+    {
+      "name": "逐界登顶循环流",
+      "description": "适用于长篇玄幻/修仙/无敌流：主角以隐藏身份与低姿态入场，在一个个逐层抬升的世界中反复经历\"受辱—捡漏—秘境—大比—遭劫—渡劫—跃升\"的成长循环，由封印身世暗线贯穿全局、由上界钩子驱动换图。",
+      "category": "套路模板",
+      "mode": "auto",
+      "author": "sigpanic",
+      "version": 1,
+      "file": "逐界登顶循环流.md"
     },
     {
       "name": "重生医武复仇流",
