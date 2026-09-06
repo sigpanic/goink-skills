@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-06T13:37:51Z",
+  "updated": "2026-09-06T15:52:21Z",
   "skills": [
     {
       "name": "emotional-arc",
@@ -27,6 +27,15 @@
       "author": "sigpanic",
       "version": 1,
       "file": "末世先知回归模式.md"
+    },
+    {
+      "name": "洋葱奇案升格流",
+      "description": "故事以一连串自带诡异规则的凶案为推进器，主角每破一案就剥出一层更大的幕后阴谋，并在查案升级中卷入权力斗争与自身身世谜局时使用。",
+      "category": "套路模板",
+      "mode": "auto",
+      "author": "sigpanic",
+      "version": 1,
+      "file": "洋葱奇案升格流.md"
     },
     {
       "name": "逐界登顶循环流",
